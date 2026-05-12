@@ -1,0 +1,588 @@
+/* ============================================================
+   ADMIN CSS  —  Login + Dashboard
+   Breakpoints: desktop (>900px) | tablet (600–900px) | mobile (<600px)
+============================================================ */
+
+/* ===================
+   LOGIN PAGE
+=================== */
+.login-wrap {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  /* full-screen background — no nav on this page */
+  background:
+    linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.82)),
+    url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1600")
+    center/cover no-repeat fixed;
+}
+
+/* Hide browser-native password reveal eye (Edge / Chrome) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  display: none !important;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  max-height: 96vh;          /* never taller than screen */
+  overflow-y: auto;          /* scroll inside card if needed */
+  scrollbar-width: none;
+  padding: 40px 44px;
+  border-radius: 28px;
+  background: rgba(14,14,14,0.88);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.6);
+  animation: loginFade 0.6s ease;
+}
+
+.login-card::-webkit-scrollbar { display: none; }
+
+.login-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.login-sub {
+  text-align: center;
+  color: #999;
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+
+.login-error {
+  background: rgba(255,60,60,0.12);
+  border: 1px solid rgba(255,60,60,0.25);
+  color: #ff8080;
+  padding: 13px 16px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.login-success {
+  background: rgba(0,210,90,0.12);
+  border: 1px solid rgba(0,210,90,0.25);
+  color: #4ade80;
+  padding: 13px 16px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--primary, #ff6200);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-family: inherit;
+}
+.link-btn:hover { opacity: 0.75; }
+
+/* ===================
+   PASSWORD WRAP
+=================== */
+.password-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrap input {
+  padding-right: 44px; /* room for the eye icon */
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 14px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+  user-select: none;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.toggle-pass:hover { color: #ccc; }
+
+/* ===================
+   SHARED FORM ELEMENTS
+=================== */
+.form-group { margin-bottom: 18px; }
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #ccc;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 13px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: #0e0e0e;
+  color: white;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary, #ff6200);
+  box-shadow: 0 0 0 4px rgba(255,98,0,0.13);
+}
+
+/* ===================
+   BUTTONS
+=================== */
+.btn {
+  border: none;
+  padding: 12px 22px;
+  border-radius: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+.btn-primary,
+.btn-success {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  box-shadow: 0 4px 14px rgba(255,90,54,0.3);
+}
+
+.btn-ghost {
+  background: rgba(255,255,255,0.07);
+  color: #eee;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.btn:active { transform: translateY(0); }
+
+.full-btn { width: 100%; }
+
+/* ===================
+   ADMIN PAGE SHELL
+=================== */
+.admin-wrap {
+  padding: 32px 32px 48px;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0d0d0d 0%, #161616 100%);
+}
+
+/* ===================
+   HEADER
+=================== */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.admin-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: white;
+}
+
+.admin-title .item-count {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted, #999);
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ===================
+   ADD / EDIT FORM
+=================== */
+.add-form {
+  background: rgba(22,22,22,0.98);
+  border-radius: 22px;
+  padding: 28px 32px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.form-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  color: white;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ===================
+   TABLE WRAPPER  ← key for responsive
+=================== */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;           /* horizontal scroll on small screens */
+  -webkit-overflow-scrolling: touch;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,90,54,0.35) transparent;
+}
+
+.table-wrap::-webkit-scrollbar { height: 5px; }
+.table-wrap::-webkit-scrollbar-track { background: transparent; }
+.table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(255,90,54,0.4);
+  border-radius: 4px;
+}
+
+/* ===================
+   ADMIN TABLE
+=================== */
+.admin-table {
+  width: 100%;
+  min-width: 680px;           /* won't squish below this → triggers scroll */
+  border-collapse: collapse;
+  background: rgba(18,18,18,0.98);
+}
+
+.admin-table thead {
+  background: linear-gradient(135deg, #5a2318, #4e3618);
+}
+
+.admin-table th {
+  padding: 18px 16px;
+  text-align: left;
+  color: #e8e0d8;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.admin-table td {
+  padding: 15px 16px;
+  color: #ccc;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 14px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.admin-table tbody tr {
+  transition: background 0.2s;
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Item cell with thumbnail */
+.tbl-item-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.tbl-thumb {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+.tbl-item-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+}
+
+/* Type badge */
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Status badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.on  { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+.status-dot.off { background: #ef4444; }
+
+/* ===================
+   TABLE ACTION BUTTONS
+=================== */
+.actions-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tbl-btn {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.tbl-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+
+.btn-edit   { background: linear-gradient(135deg,#00b894,#00d2a8); color:#fff; }
+.btn-delete { background: linear-gradient(135deg,#e53935,#ff5252); color:#fff; }
+
+/* ===================
+   TOGGLE SWITCH
+=================== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  background: #3a3a3a;
+  border-radius: 40px;
+  transition: 0.35s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.35s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.switch input:checked + .slider {
+  background: linear-gradient(135deg, #00c853, #69f0ae);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(22px);
+}
+
+/* ===================
+   MODALS
+=================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+  padding: 24px;
+}
+
+.modal-card {
+  background: rgba(18,18,18,0.98);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 26px;
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 28px 70px rgba(0,0,0,0.65);
+  animation: loginFade 0.3s ease;
+}
+
+@keyframes loginFade {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================
+   TABLET  600–900px
+=================== */
+@media (max-width: 900px) {
+  .admin-wrap { padding: 24px 20px; }
+
+  .admin-title { font-size: 1.7rem; }
+
+  .form-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===================
+   MOBILE  <600px
+=================== */
+@media (max-width: 600px) {
+
+  /* ── shell ── */
+  .admin-wrap { padding: 16px 12px 40px; }
+
+  /* ── header: title on top, then 2×2 button grid ── */
+  .admin-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .admin-title { font-size: 1.3rem; }
+
+  /* 2 columns × 2 rows — all 4 buttons visible, no scroll */
+  .admin-header-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    overflow: visible;       /* no scrolling */
+  }
+
+  .admin-header-actions .btn {
+    font-size: 12px;
+    padding: 9px 10px;
+    border-radius: 11px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── form ── */
+  .add-form { padding: 14px; border-radius: 16px; }
+  .form-grid { grid-template-columns: 1fr; gap: 11px; }
+  .form-title { font-size: 1.05rem; margin-bottom: 14px; }
+
+  /* ── TABLE: fits screen width, extra columns swipe-revealed ──
+     Show: thumbnail + name + price + actions  (always visible)
+     Hide via overflow: category / type / status columns peek in */
+  .table-wrap {
+    border-radius: 14px;
+    /* no min-width constraint here — table itself sets it */
+  }
+
+  /* Table is wider than screen → horizontal swipe reveals rest */
+  .admin-table { min-width: 520px; }
+
+  .admin-table th {
+    padding: 13px 10px;
+    font-size: 10.5px;
+    letter-spacing: 0.3px;
+  }
+
+  .admin-table td {
+    padding: 11px 10px;
+    font-size: 12px;
+  }
+
+  .tbl-thumb { width: 36px; height: 36px; border-radius: 7px; }
+  .tbl-item-name { font-size: 12px; }
+
+  .tbl-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+    border-radius: 7px;
+  }
+
+  .switch { width: 40px; height: 22px; }
+  .slider::before { width: 16px; height: 16px; }
+  .switch input:checked + .slider::before { transform: translateX(18px); }
+
+  /* ── modal ── */
+  .modal-card {
+    padding: 22px 16px;
+    border-radius: 18px;
+    max-width: 100%;
+  }
+}
+
+/* ===================
+   VERY SMALL  <380px
+=================== */
+@media (max-width: 380px) {
+  .admin-wrap { padding: 12px 10px; }
+  .admin-title { font-size: 1.15rem; }
+
+  .admin-header-actions .btn {
+    font-size: 11px;
+    padding: 8px 8px;
+  }
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — HotZone</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./admin.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+<link rel="manifest" href="../img/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <script>
+    if (!localStorage.getItem("token")) window.location.href = "login.html";
+  </script>
+
+  <div id="page-admin">
+    <div class="admin-wrap">
+
+      <!-- ══ HEADER ══ -->
+      <div class="admin-header">
+        <div class="admin-title">
+          Menu Management
+          <span class="item-count" id="adminItemCount"></span>
+        </div>
+        <div class="admin-header-actions">
+          <button class="btn btn-primary"  onclick="toggleAddForm()">＋ Add Item</button>
+          <button class="btn btn-ghost"    onclick="openChangePassword()">🔑 Password</button>
+          <button class="btn btn-ghost"    onclick="openChangeUsername()">👤 Username</button>
+          <button class="btn btn-ghost"    onclick="logout()">Logout</button>
+        </div>
+      </div>
+
+      <!-- ══ ADD FORM ══ -->
+      <div class="add-form" id="addForm" style="display:none;">
+        <div class="form-title">Add New Menu Item</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Item Name</label>
+            <input type="text" id="newName" placeholder="e.g. Veg Burger" />
+          </div>
+          <div class="form-group">
+            <label>Price (₹)</label>
+            <input type="number" id="newPrice" placeholder="e.g. 80" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="newCat">
+              <option value="Sandwich">Sandwich</option>
+              <option value="Burger">Burger</option>
+              <option value="Pizza">Pizza</option>
+              <option value="Fries">Fries</option>
+              <option value="Mojito">Mojito</option>
+              <option value="Milkshake">Milkshake</option>
+              <option value="Meat">Meat</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <select id="newType">
+              <option value="veg">Vegetarian</option>
+              <option value="nonveg">Non-Vegetarian</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Image URL</label>
+            <input type="text" id="newImage" placeholder="Paste image link" />
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" id="newDesc" placeholder="Short description" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-success" onclick="addItem()">Save Item</button>
+          <button class="btn btn-ghost"   onclick="toggleAddForm()">Cancel</button>
+        </div>
+      </div>
+
+      <!-- ══ EDIT FORM ══ -->
+      <div class="add-form" id="editForm" style="display:none;">
+        <div class="form-title">Edit Menu Item</div>
+        <div class="form-grid">
+          <input type="hidden" id="editId">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="editName">
+          </div>
+          <div class="form-group">
+            <label>Price (₹)</label>
+            <input type="number" id="editPrice">
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="editCategory">
+              <option value="Sandwich">Sandwich</option>
+              <option value="Burger">Burger</option>
+              <option value="Pizza">Pizza</option>
+              <option value="Fries">Fries</option>
+              <option value="Mojito">Mojito</option>
+              <option value="Milkshake">Milkshake</option>
+              <option value="Meat">Meat</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <select id="editType">
+              <option value="veg">Veg</option>
+              <option value="nonveg">Non-Veg</option>
+              <option value="beverage">Beverages</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Image URL</label>
+            <input type="text" id="editImage">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" id="editDesc">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-success" onclick="saveEdit()">Save Changes</button>
+          <button class="btn btn-ghost"   onclick="closeEdit()">Cancel</button>
+        </div>
+      </div>
+
+      <!-- ══ TABLE (scrolls horizontally on mobile) ══ -->
+      <div class="table-wrap">
+        <table class="admin-table" id="adminTable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminBody"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ MODAL: CHANGE PASSWORD ══ -->
+  <div class="modal-overlay" id="modalChangePassword" style="display:none;"
+       onclick="closeModalOnOverlay(event,'modalChangePassword')">
+    <div class="modal-card">
+      <div class="form-title">🔑 Change Password</div>
+      <div class="login-error"   id="cpError"   style="display:none;"></div>
+      <div class="login-success" id="cpSuccess" style="display:none;"></div>
+      <div class="form-group">
+        <label>Current Password</label>
+          <div class="password-wrap">
+        <input type="password" id="cpOldPass" placeholder="Current password" />
+        <span class="toggle-pass" onclick="togglePassword('cpOldPass', this)">
+            <i class="fa-solid fa-eye"></i>
+        </span>
+          </div>
+      </div>
+      <div class="form-group">
+        <label>New Password</label>
+        <div class="password-wrap">
+        <input type="password" id="cpNewPass" placeholder="At least 8 characters" />
+         <span class="toggle-pass" onclick="togglePassword('cpNewPass', this)">
+            <i class="fa-solid fa-eye"></i>
+         </span>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:20px;">
+        <label>Confirm New Password</label>
+          <div class="password-wrap">
+        <input type="password" id="cpConfirmPass" placeholder="Repeat new password" />
+        <span class="toggle-pass" onclick="togglePassword('cpConfirmPass', this)">
+            <i class="fa-solid fa-eye"></i>
+        </span>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-primary full-btn" onclick="doChangePassword()">Update Password</button>
+        <button class="btn btn-ghost" style="min-width:90px;" onclick="closeModal('modalChangePassword')">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL: CHANGE USERNAME ══ -->
+  <div class="modal-overlay" id="modalChangeUsername" style="display:none;"
+       onclick="closeModalOnOverlay(event,'modalChangeUsername')">
+    <div class="modal-card">
+      <div class="form-title">👤 Change Username</div>
+      <div class="login-error"   id="cuError"   style="display:none;"></div>
+      <div class="login-success" id="cuSuccess" style="display:none;"></div>
+      <div class="form-group" style="margin-bottom:20px;">
+        <label>New Username</label>
+        <input type="text" id="cuNewUsername" placeholder="New username" />
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-primary full-btn" onclick="doChangeUsername()">Update Username</button>
+        <button class="btn btn-ghost" style="min-width:90px;" onclick="closeModal('modalChangeUsername')">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

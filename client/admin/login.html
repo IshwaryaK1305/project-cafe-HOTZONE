@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — HotZone</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./admin.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+<link rel="manifest" href="../img/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      background:
+        linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.82)),
+        url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1600")
+        center/cover no-repeat fixed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-wrap">
+    <div class="login-card">
+
+      <!-- ══ PANEL 1: LOGIN ══ -->
+      <div id="panelLogin">
+        <div class="login-title">Admin Login</div>
+        <div class="login-sub">HotZone Management Panel</div>
+        <div class="login-error" id="loginError" style="display:none;"></div>
+
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="loginUser" placeholder="admin"
+            onkeydown="if(event.key==='Enter') doLogin()" />
+        </div>
+
+        <div class="form-group" style="margin-bottom:6px;">
+          <label>Password</label>
+          <div class="password-wrap">
+            <input type="password" id="loginPass" placeholder="••••••••"
+              onkeydown="if(event.key==='Enter') doLogin()" />
+            <span class="toggle-pass" onclick="togglePassword('loginPass', this)">
+                <i class="fa-solid fa-eye"></i>
+            </span>
+          </div>
+        </div>
+
+        <div style="text-align:right; margin-bottom:22px;">
+          <button class="link-btn" onclick="showPanel('panelForgot')">Forgot password?</button>
+        </div>
+
+        <button class="btn btn-primary full-btn" onclick="doLogin()">Login</button>
+      </div>
+
+      <!-- ══ PANEL 2: FORGOT PASSWORD ══ -->
+      <div id="panelForgot" style="display:none;">
+        <div class="login-title" style="font-size:1.6rem;">Reset Password</div>
+        <div class="login-sub">Enter your username and secret recovery PIN</div>
+        <div class="login-error"   id="fpError"   style="display:none;"></div>
+        <div class="login-success" id="fpSuccess"  style="display:none;"></div>
+
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="fpUsername" placeholder="admin" />
+        </div>
+
+        <div class="form-group">
+          <label>Recovery PIN</label>
+          <div class="password-wrap">
+            <input type="password" id="fpPin" placeholder="Secret PIN" />
+            <span class="toggle-pass" onclick="togglePassword('fpPin', this)">
+              <i class="fa-solid fa-eye"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>New Password</label>
+          <div class="password-wrap">
+            <input type="password" id="fpNewPass" placeholder="At least 8 characters" />
+            <span class="toggle-pass" onclick="togglePassword('fpNewPass', this)">
+                <i class="fa-solid fa-eye"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:22px;">
+          <label>Confirm New Password</label>
+          <div class="password-wrap">
+            <input type="password" id="fpConfirmPass" placeholder="Repeat new password" />
+            <span class="toggle-pass" onclick="togglePassword('fpConfirmPass', this)">
+                <i class="fa-solid fa-eye"></i>
+            </span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-primary full-btn" onclick="doForgotPassword()">Reset Password</button>
+          <button class="btn btn-ghost" style="min-width:80px;" onclick="showPanel('panelLogin')">Back</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

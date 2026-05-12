@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HotZone</title>
+  <link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+<link rel="manifest" href="img/site.webmanifest">
+</head>
+
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav>
+    <div class="logo">
+      <img src="img/logo.jpeg" alt="logo">
+      <h4>Hot<span>Zone</span></h4>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn active" onclick="showPage('home')">Home</button>
+      <button class="nav-btn" onclick="showPage('about')">About</button>
+      <button class="nav-btn" onclick="showPage('menu')">Menu</button>
+    </div>
+  </nav>
+
+  <!-- ========== SECTION: HOME ========== -->
+  <section id="page-home">
+
+    <!-- HERO -->
+    <div class="home-hero">
+      <div class="home-hero-bg"></div>
+      <div class="home-hero-content">
+        <div class="hero-eyebrow">Udangudi's Finest · Est. 2020</div>
+        <h1 class="home-title">Welcome to <span>HotZone</span></h1>
+        <p class="home-sub">Fast food & grill crafted with fire, soul, and real flavour — right here in Tamil Nadu.</p>
+        <div class="home-cta-row">
+          <button class="btn btn-primary home-cta-btn" onclick="showPage('menu')">
+            🔥 Explore Menu
+          </button>
+         
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY HOTZONE — home only, removed from about -->
+    <div class="home-features">
+      <h2 class="home-section-title">Why <span>HotZone?</span></h2>
+      <div class="home-feat-grid">
+        <div class="home-feat-card">
+          <div class="feat-icon">🔥</div>
+          <div class="feat-title">Grilled Fresh</div>
+          <div class="feat-desc">Every item cooked to order — no pre-made, no shortcuts.</div>
+        </div>
+        <div class="home-feat-card">
+          <div class="feat-icon">🍕</div>
+          <div class="feat-title">Loaded Menu</div>
+          <div class="feat-desc">Burgers, Pizzas, Sandwiches, Mojitos & more under one roof.</div>
+        </div>
+        <div class="home-feat-card">
+          <div class="feat-icon">✅</div>
+          <div class="feat-title">100% Halal</div>
+          <div class="feat-desc">Certified halal ingredients — trusted by our community.</div>
+        </div>
+        <div class="home-feat-card">
+          <div class="feat-icon">⏰</div>
+          <div class="feat-title">Open 4PM–10PM</div>
+          <div class="feat-desc">Evening vibes only — come hungry, leave happy.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="home-stats">
+      <div class="stat-item">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Menu Items</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">5★</span>
+        <span class="stat-label">Customer Love</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Fresh Daily</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">Halal</span>
+        <span class="stat-label">Certified</span>
+      </div>
+    </div>
+
+    <!-- QUICK CATEGORIES -->
+    <div class="home-cats">
+      <h2 class="home-section-title">What's <span>Cooking?</span></h2>
+      <div class="home-cat-grid">
+        <div class="home-cat-card" onclick="filterCat('Burger'); showPage('menu')">
+          <span class="cat-emoji">🍔</span><span>Burgers</span>
+        </div>
+        <div class="home-cat-card" onclick="filterCat('Pizza'); showPage('menu')">
+          <span class="cat-emoji">🍕</span><span>Pizzas</span>
+        </div>
+        <div class="home-cat-card" onclick="filterCat('Sandwich'); showPage('menu')">
+          <span class="cat-emoji">🥪</span><span>Sandwiches</span>
+        </div>
+        <div class="home-cat-card" onclick="filterCat('Mojito'); showPage('menu')">
+          <span class="cat-emoji">🍹</span><span>Mojitos</span>
+        </div>
+        <div class="home-cat-card" onclick="filterCat('Milkshake'); showPage('menu')">
+          <span class="cat-emoji">🥤</span><span>Milkshakes</span>
+        </div>
+        <div class="home-cat-card" onclick="filterCat('Meat'); showPage('menu')">
+          <span class="cat-emoji">🍖</span><span>Meat</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- ========== END HOME SECTION ========== -->
+
+
+  <!-- ========== SECTION: ABOUT ========== -->
+  <!-- Simplified: story + stats left, cafe photo right. No duplicate feature cards. -->
+  <section id="page-about">
+    <div class="about-layout">
+
+      <!-- LEFT: Our Story + stats -->
+      <div class="about-story">
+        <h2 class="about-title">Our Story</h2>
+        <p class="about-desc">
+          HotZone has been serving Udangudi's finest fast food & grill since 2020.
+          Every dish is crafted with fire, soul, and real flavour — using the freshest
+          halal ingredients, cooked fresh to order every evening.
+        </p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-num">5+</div>
+            <div class="about-stat-label">Years of service</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">50+</div>
+            <div class="about-stat-label">Menu items</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">100%</div>
+            <div class="about-stat-label">Fresh daily</div>
+          </div>
+        </div>
+
+        <!-- Contact info row — new addition -->
+        <div class="about-contact">
+          <a class="about-contact-btn" href="https://wa.me/919597490304" target="_blank">
+            📲 Order on WhatsApp
+          </a>
+          <div class="about-contact-info">
+            <span>📍 Udangudi, Tamil Nadu</span>
+            <span>⏰ Open 4PM – 10PM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: cafe photo -->
+      <div class="about-photo-wrap">
+        <img
+          src="img/HZ.jpeg"
+          alt="HotZone cafe"
+          class="about-photo"
+        />
+        <div class="about-photo-badge">
+          <a
+            href="https://www.google.com/maps/place/HotZone/@8.4307948,78.0275855,17z/data=!3m1!4b1!4m6!3m5!1s0x3b0385901958948b:0x7e4ff10b3ce202fd!8m2!3d8.4307948!4d78.0275855!16s%2Fg%2F11nx0pbq6j?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+          ></a>
+          📍 Visit Us
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ========== END ABOUT SECTION ========== -->
+
+
+  <!-- ========== SECTION: MENU ========== -->
+  <section id="page-menu">
+
+    <!-- MENU BANNER — completely different from home hero -->
+    <div class="menu-banner">
+      <div class="menu-banner-inner">
+
+        <!-- Left side: text + action -->
+        <div class="menu-banner-left">
+          <div class="menu-banner-tag">🔥 Fresh Grilled · Halal Certified</div>
+          <h2 class="menu-banner-heading">Our Full <span>Menu</span></h2>
+          <p class="menu-banner-sub">Every item made to order. Pick your favourite and order directly on WhatsApp — we'll have it ready.</p>
+          <div class="menu-banner-actions">
+            <a class="btn btn-primary menu-wa-btn" href="https://wa.me/919597490304" target="_blank">
+              📲 Order on WhatsApp
+            </a>
+            <div class="menu-banner-meta">
+              <span>📍 Udangudi, TN</span>
+              <span>⏰ 4PM – 10PM</span>
+              <span>📞 +91 95974 90304</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right side: 3 quick stat pills -->
+        <div class="menu-banner-right">
+          <div class="menu-stat-pill">
+            <span class="menu-stat-num">50+</span>
+            <span class="menu-stat-label">Items</span>
+          </div>
+          <div class="menu-stat-pill">
+            <span class="menu-stat-num">✅</span>
+            <span class="menu-stat-label">100% Halal</span>
+          </div>
+          <div class="menu-stat-pill">
+            <span class="menu-stat-num">🔥</span>
+            <span class="menu-stat-label">Cooked Fresh</span>
+          </div>
+          <div class="menu-stat-pill">
+            <span class="menu-stat-num">⏰</span>
+            <span class="menu-stat-label">4PM–10PM</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CATEGORY BAR -->
+    <div class="cat-bar" id="catBar">
+      <button class="cat-btn active" onclick="filterCat('All')">All</button>
+      <button class="cat-btn" onclick="filterCat('Sandwich')">Sandwich</button>
+      <button class="cat-btn" onclick="filterCat('Burger')">Burger</button>
+      <button class="cat-btn" onclick="filterCat('Pizza')">Pizza</button>
+      <button class="cat-btn" onclick="filterCat('Fries')">Fries</button>
+      <button class="cat-btn" onclick="filterCat('Mojito')">Mojito</button>
+      <button class="cat-btn" onclick="filterCat('Milkshake')">Milkshake</button>
+      <button class="cat-btn" onclick="filterCat('Meat')">Meat</button>
+    </div>
+
+    <!-- MENU GRID -->
+    <div class="menu-section">
+      <div class="section-title" id="sectionTitle"></div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </div>
+
+  </section>
+  <!-- ========== END MENU SECTION ========== -->
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-cta-row">
+        <div class="footer-cta-text">
+          <div class="footer-big-line">TASTE THE <span>HEAT</span> TONIGHT</div>
+          <div class="footer-sub-line">Fresh Grill · Pizza · Burgers · Mojitos · All prices inclusive of taxes</div>
+        </div>
+        <a class="footer-wa-btn" href="https://wa.me/919597490304" target="_blank">
+          Order on WhatsApp
+        </a>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-info-bar">
+        <span>© 2026 HotZone Foods & Beverages</span>
+        <span>📍 Udangudi, Tamil Nadu</span>
+        <span>⏰ Open 4PM – 10PM · Halal ✓</span>
+        <span>God is Love 🙏</span>
+      </div>
+      <div class="footer-fire-strip"></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
