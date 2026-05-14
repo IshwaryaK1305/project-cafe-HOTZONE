@@ -297,7 +297,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 }
 
 .admin-table thead {
-  background: linear-gradient(135deg, #5a2318, #4e3618);
+  background: linear-gradient(135deg, #fab905cb, #ee6002b9);
 }
 
 .admin-table th {
