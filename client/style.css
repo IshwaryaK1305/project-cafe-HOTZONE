@@ -615,6 +615,16 @@ nav {
   font-weight: 600;
 }
 
+.tag-beverage {
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(0, 170, 255, 0.12);
+  color: #4dc8ff;
+  border: 1px solid rgba(0, 170, 255, 0.2);
+}
+
 .tag-veg   { background: rgba(0,255,0,0.12); color: #54ff54; }
 .tag-nonveg { background: rgba(255,0,0,0.12); color: #ff7070; }
 
