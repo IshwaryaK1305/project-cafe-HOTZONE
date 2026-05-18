@@ -1,4 +1,4 @@
-const API = window.location.origin + "/api";
+const API = "http://127.0.0.1:5000/api";
 
 let menuItems = [];
 let activeCategory = "All";

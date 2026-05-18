@@ -1,10 +1,11 @@
-const API = window.location.origin + "/api";
+const API = "http://127.0.0.1:5000/api";
 let menuItems = [];
 
 // ────────────────────────────────────────────────────────
 // TOGGLE PASSWORD VISIBILITY
 // ────────────────────────────────────────────────────────
 function togglePassword(inputId, iconEl) {
+
   const input = document.getElementById(inputId);
 
   if (!input) return;
@@ -12,13 +13,16 @@ function togglePassword(inputId, iconEl) {
   const icon = iconEl.querySelector("i");
 
   if (input.type === "password") {
+
     input.type = "text";
 
     icon.classList.remove("fa-eye");
     icon.classList.add("fa-eye-slash");
 
     iconEl.style.color = "#ff6200";
+
   } else {
+
     input.type = "password";
     icon.classList.remove("fa-eye-slash");
     icon.classList.add("fa-eye");

@@ -140,7 +140,17 @@ nav {
   padding: 60px 24px;
   overflow: hidden;
 }
-
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary-light);
+  margin-bottom: 14px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.1s forwards;
+}
 .home-hero-bg {
   position: absolute;
   inset: 0;
@@ -352,7 +362,7 @@ nav {
 
 /* =========================
    MENU BANNER — split layout
-   Completely different from home hero
+  
 ========================= */
 .menu-banner {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a0f08 50%, #0f0a00 100%);
