@@ -5,14 +5,6 @@ const bcrypt = require("bcryptjs");
 
 const User = require("./models/user");
 
-// ─────────────────────────────────────────
-// ✏️  EDIT THESE BEFORE RUNNING
-// ─────────────────────────────────────────
-const ADMIN_USERNAME = "ishu";
-const ADMIN_PASSWORD = "ishu123"; // login password
-const RECOVERY_PIN = "HOTZONE2020"; // secret PIN for "Forgot Password"
-//   ↑ share this PIN privately with the cafe owner only
-// ─────────────────────────────────────────
 
 mongoose
   .connect(process.env.MONGO_URI)
